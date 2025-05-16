@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuzeUp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="bg-black flex mt-10 justify-center h-screen">
+    <div id="container-LogIn" class="flex flex-col items-center mt-[30%]">
+        <button onclick="goToIndex()" id="backbtn" class="absolute top-8 left-4 bg-transparent border-2 border-[#DCC681] rounded-full w-12 h-12 flex items-center justify-center text-[#DCC681] text-2xl cursor-pointer hover:bg-[#DCC681] hover:text-white transition">
+            <i class='bx bx-arrow-back'></i>
+        </button>
+        <img src="images/logo.png" alt="logo.png" id="logo" class="w-64 mb-6">
+        <h1 id="logIn-h1" class="text-[#DCC681] text-3xl mb-[10%]">LOG IN</h1>
+        <form id="LogIn-Form" class="flex flex-col items-center gap-5">
+            <div id="input-group" class="flex flex-col items-start w-full max-w-lg">
+                <label class="text-xs mb-1 ml-2 text-[#DCC681]">Email</label>
+                <input type="email" required class="w-full p-3 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-sm focus:outline-none focus:border-white">
+            </div>
+            <div id="input-group" class="flex flex-col items-start w-full max-w-lg relative">
+                <label class="text-xs mb-1 ml-2 text-[#DCC681]">Password</label>
+                <input type="password" required class="w-full p-3 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-sm focus:outline-none focus:border-white">
+                <a href="#" id="forgot-link" class="text-xs underline text-[#DCC681] cursor-pointer mt-2 ml-40">Forgot password?</a>
+            </div>
+            <button type="submit" id="submit-button" onclick="goToDashBoard()" class="bg-transparent border-2 border-[#DCC681] text-[#DCC681] rounded-full w-32 h-12 flex items-center justify-center hover:bg-[#DCC681] hover:text-black transition">
+                <span id="arrow" class="text-2xl"><i class='bx bx-right-arrow-alt'></i></span>
+            </button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

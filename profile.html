@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuzeUp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="bg-black text-[#DCC681]">
+    <header>
+        <nav class="flex flex-col items-center p-4">
+            <div id="logo-Search" class="flex items-center w-full justify-between">
+                <img src="images/logo.png" alt="logo.png" class="w-1/5 mr-4">
+                <input type="text" placeholder="Search" id="search-Bar" class="h-10 w-4/5 bg-transparent border border-[#DCC681] text-[#DCC681] rounded-full px-2 focus:outline-none focus:border-[#DCC681]">
+            </div>
+            <div id="icons" class="mt-4 w-full">
+                <ul class="flex justify-around">
+                    <li><i class='bx bx-home-alt text-4xl cursor-pointer hover:text-white' onclick="goToDashBoard()"></i></li>
+                    <li><i class='bx bx-user-plus text-4xl cursor-pointer hover:text-white' onclick="goToFriendReq()"></i></li>
+                    <li><i class='bx bx-bell text-4xl cursor-pointer hover:text-white' onclick="goToNotification()"></i></li>
+                    <li class="relative">
+                        <i class='bx bx-menu text-4xl cursor-pointer hover:text-white' id="hamburgerMenu"></i>
+                        <div id="dropdownMenu" class="hidden absolute top-12 right-0 bg-black border border-[#DCC681] rounded-lg p-4 w-48 shadow-lg z-50">
+                            <div id="userProfile" class="flex items-center mb-4">
+                                <img src="images/user-profile.png" alt="User Profile" class="profileImage w-10 h-10 rounded-full mr-2">
+                                <p id="userName" class="text-[#DCC681] font-bold text-sm">John Doe</p>
+                            </div>
+                            <button onclick="goToProfile()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Profile</button>
+                            <button onclick="goToPage()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Page</button>
+                            <button onclick="goToContact()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Contact</button>
+                            <button onclick="logout()" class="w-full py-2 px-4 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Logout</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div id="profile" class="p-4">
+        <!-- Profile Header -->
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold">Profile</h1>
+            <button id="editProfile" class="py-2 px-4 bg-[#DCC681] text-black rounded hover:bg-white transition">Edit</button>
+        </div>
+
+        <!-- Profile Info -->
+        <div class="flex items-center mb-4">
+            <img src="images/user-profile.png" alt="User Profile" class="profileImage w-20 h-20 rounded-full mr-4">
+            <div>
+                <p id="userName" class="text-xl font-bold">John Doe</p>
+            </div>
+        </div>
+
+        <!-- Bio -->
+        <div>
+            <h2 class="text-lg font-bold mb-2">Bio</h2>
+            <p id="bioText" class="text-sm">Bio here</p>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-black border border-[#DCC681] rounded-lg p-6 w-4/5 max-w-lg shadow-lg">
+            <span id="closeEditModal" class="text-[#DCC681] text-2xl font-bold cursor-pointer float-right hover:text-white">&times;</span>
+            <h3 class="text-lg font-bold mb-4">Edit Profile</h3>
+            <form id="editProfileForm" class="space-y-4">
+                <div>
+                    <label for="newProfileImage" class="block text-sm">Change Profile Picture</label>
+                    <input type="file" id="newProfileImage" accept="image/*" class="w-full bg-white text-black p-2 rounded">
+                </div>
+                <div>
+                    <label for="newBio" class="block text-sm">Update Bio</label>
+                    <textarea id="newBio" placeholder="Write your bio..." class="w-full p-3 border border-[#DCC681] rounded bg-transparent text-[#DCC681] focus:outline-none focus:border-white"></textarea>
+                </div>
+                <button type="button" id="saveProfileChanges" class="w-full py-2 px-4 bg-[#DCC681] text-black rounded hover:bg-white transition">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const editProfileButton = document.getElementById('editProfile');
+        const editProfileModal = document.getElementById('editProfileModal');
+        const closeEditModal = document.getElementById('closeEditModal');
+        const saveProfileChanges = document.getElementById('saveProfileChanges');
+        const profileImages = document.querySelectorAll('.profileImage'); // Select all profile images
+        const bioText = document.getElementById('bioText');
+        const newProfileImage = document.getElementById('newProfileImage');
+        const newBio = document.getElementById('newBio');
+
+        // Open Edit Profile Modal
+        editProfileButton.addEventListener('click', () => {
+            editProfileModal.classList.remove('hidden');
+        });
+
+        // Close Edit Profile Modal
+        closeEditModal.addEventListener('click', () => {
+            editProfileModal.classList.add('hidden');
+        });
+
+        // Save Profile Changes
+        saveProfileChanges.addEventListener('click', () => {
+            // Update Profile Picture
+            if (newProfileImage.files.length > 0) {
+                const file = newProfileImage.files[0];
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profileImages.forEach((img) => {
+                        img.src = e.target.result; // Update all profile images
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // Update Bio
+            if (newBio.value.trim() !== '') {
+                bioText.textContent = newBio.value.trim();
+            }
+
+            // Close Modal
+            editProfileModal.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>

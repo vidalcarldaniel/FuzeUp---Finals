@@ -1,0 +1,339 @@
+html {
+    margin: 0;
+    padding: 0;
+    font: bold;
+    font-family: cursive;
+    background-color: #000000;
+}
+.signUp-logIn-Btn {
+    width: 40%;
+    text-align: center;
+    padding: 10px;
+    border: solid 2px #DCC681;
+    border-radius: 25px;
+    background-color: #000000;
+    color: #DCC681;
+    margin: 25px auto;
+    font-size: 25px;
+    padding: 12px;
+}
+.signUp-logIn-Btn:hover {
+    border: solid 2px #ffffff;
+    border-radius: 25px;
+    background-color: #DCC681;
+    color: #ffffff;
+}
+
+/* Sign Up */
+#container-SignUp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30%;
+}
+#signUp-h1 {
+    color: #DCC681;
+    margin: 10% auto;
+}
+#signUp-Form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#login-link {
+    font-size: 12px;
+    text-decoration: underline;
+    color: #DCC681;
+    cursor: pointer;
+    margin-top: -10px;
+    border: none;
+    background-color: transparent;
+    margin-left: 60%;
+}
+
+/* Log In */
+
+#container-LogIn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30%;
+}
+#logIn-h1 {
+    color: #DCC681;
+    margin: 10% auto;
+}
+#LogIn-Form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#forgot-link {
+    font-size: 12px;
+    text-decoration: underline;
+    color: #DCC681;
+    cursor: pointer;
+    margin-top: -10px;
+    border: none;
+    background-color: transparent;
+    margin-left: 72%;
+}
+
+/* SignUp & LogIn */
+#name-fields {
+    display: flex;
+    gap: 20px;
+}
+
+#input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1% auto;
+}
+
+#input-group label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    color: #DCC681;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 330px;
+    padding: 10px 15px;
+    border: 2px solid #DCC681;
+    border-radius: 20px;
+    background: transparent;
+    color: #DCC681;
+    font-size: 14px;
+    outline: none;
+}
+
+#name-fields #input-group input {
+    width: 140px;
+}
+
+#submit-button {
+    background: transparent;
+    border: 2px solid #DCC681;
+    color: #DCC681;
+    border-radius: 20px;
+    width: 200px;
+    height: 45px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 20px auto 0 auto;
+}
+  
+#submit-button:hover {
+    background-color: #DCC681;
+    color: #000;
+    border: solid 2px 2px #DCC681;
+}
+  
+#arrow {
+    font-size: 30px;
+}
+
+/* Header */
+
+#logo-Search {
+    display: flex;
+}
+#logo-Search #search-Bar {
+    height: 5px;
+    margin-top: 10px;
+}
+#logo-Search img{
+    width: 20%;
+    margin-right: 10px;
+}
+#icons i {
+    color: #DCC681;
+    font-size: 35px;
+    cursor: pointer;
+}
+ul {
+    display: flex;
+    justify-content: space-around;
+    margin-left: -45px;
+}
+
+/* Footer */
+
+footer {
+    color: #DCC681;
+    font-size: 40px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 50;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(67, 67, 67, 0.211);
+}
+
+.modal-content {
+    background-color: #000000;
+    margin: 15% auto;
+    padding: 20px;
+    border: solid 2px #DCC681;
+    color: #DCC681;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#caption {
+    color: #DCC681;
+    font-size: 15px;
+    width: 90%;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.close {
+    color: #DCC681;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+}
+
+#uploadFile {
+    background-color: white;
+    color: #000000;
+    width: 100%;
+    margin: 15px auto;
+}
+/* Post Type Buttons */
+#postTypeButtons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.postTypeButton {
+    padding: 10px 20px;
+    border: solid 2px #DCC681;
+    border-radius: 15px;
+    background-color: #000000;
+    color: #DCC681;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.postTypeButton:hover {
+    background-color: white;
+    color: #000000;
+}
+
+.postTypeButton.active {
+    background-color: #DCC681;
+    color: #000000;
+}
+
+.post_btn {
+    border: 2px solid #DCC681;
+    background-color: #000000;
+    color: #DCC681;
+    border-radius: 25px;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0 auto;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+    width: 40%;
+}
+
+.post_btn:hover {
+    background-color: #DCC681;
+    color: #000000;
+}
+
+/* Dropdown Menu */
+#dropdownMenu {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background-color: #000000;
+    border: 2px solid #DCC681;
+    border-radius: 10px;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#dropdownMenu.hidden {
+    display: none;
+}
+
+#userProfile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#profileImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#userName {
+    color: #DCC681;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#dropdownMenu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #000000;
+    color: #DCC681;
+    border: 2px solid #DCC681;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#dropdownMenu button:hover {
+    background-color: #DCC681;
+    color: #000000;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuzeUp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="bg-black text-[#DCC681]">
+    <header>
+        <nav class="flex flex-col items-center p-4">
+            <div id="logo-Search" class="flex items-center w-full justify-between">
+                <img src="images/logo.png" alt="logo.png" class="w-1/5 mr-4">
+                <input type="text" placeholder="Search" id="search-Bar" class="h-10 w-4/5 bg-transparent border border-[#DCC681] text-[#DCC681] rounded-full px-2 focus:outline-none focus:border-[#DCC681]">
+            </div>
+            <div id="icons" class="mt-4 w-full">
+                <ul class="flex justify-around">
+                    <li><i class='bx bx-home-alt text-4xl cursor-pointer hover:text-white' onclick="goToDashBoard()"></i></li>
+                    <li><i class='bx bx-user-plus text-4xl cursor-pointer hover:text-white' onclick="goToFriendReq()"></i></li>
+                    <li><i class='bx bx-bell text-4xl cursor-pointer hover:text-white' onclick="goToNotification()"></i></li>
+                    <li class="relative">
+                        <i class='bx bx-menu text-4xl cursor-pointer hover:text-white' id="hamburgerMenu"></i>
+                        <div id="dropdownMenu" class="hidden absolute top-12 right-0 bg-black border border-[#DCC681] rounded-lg p-4 w-48 shadow-lg z-50">
+                            <div id="userProfile" class="flex items-center mb-4">
+                                <img src="images/user-profile.png" alt="User Profile" id="profileImage" class="w-10 h-10 rounded-full mr-2">
+                                <p id="userName" class="text-[#DCC681] font-bold text-sm">John Doe</p>
+                            </div>
+                            <button onclick="goToProfile()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Profile</button>
+                            <button onclick="goToPage()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Page</button>
+                            <button onclick="goToContact()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Contact</button>
+                            <button onclick="logout()" class="w-full py-2 px-4 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Logout</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div id="friend-req" class="p-4">
+ 
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

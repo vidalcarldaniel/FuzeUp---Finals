@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuzeUp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="bg-black text-[#DCC681]">
+    <header>
+        <nav class="flex flex-col items-center p-4">
+            <div id="logo-Search" class="flex items-center w-full justify-between">
+                <img src="images/logo.png" alt="logo.png" class="w-1/5 mr-4">
+                <input type="text" placeholder="Search" id="search-Bar" class="h-10 w-4/5 bg-transparent border border-[#DCC681] text-[#DCC681] rounded-full px-2 focus:outline-none focus:border-[#DCC681]">
+            </div>
+            <div id="icons" class="mt-4 w-full">
+                <ul class="flex justify-around">
+                    <li><i class='bx bx-home-alt text-4xl cursor-pointer hover:text-white' onclick="goToDashBoard()"></i></li>
+                    <li><i class='bx bx-user-plus text-4xl cursor-pointer hover:text-white' onclick="goToFriendReq()"></i></li>
+                    <li><i class='bx bx-bell text-4xl cursor-pointer hover:text-white' onclick="goToNotification()"></i></li>
+                    <li class="relative">
+                        <i class='bx bx-menu text-4xl cursor-pointer hover:text-white' id="hamburgerMenu"></i>
+                        <div id="dropdownMenu" class="hidden absolute top-12 right-0 bg-black border border-[#DCC681] rounded-lg p-4 w-48 shadow-lg z-50">
+                            <div id="userProfile" class="flex items-center mb-4">
+                                <img src="images/user-profile.png" alt="User Profile" id="profileImage" class="w-10 h-10 rounded-full mr-2">
+                                <p id="userName" class="text-[#DCC681] font-bold text-sm">John Doe</p>
+                            </div>
+                            <button onclick="goToProfile()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Profile</button>
+                            <button onclick="goToPage()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Page</button>
+                            <button onclick="goToContact()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Contact</button>
+                            <button onclick="logout()" class="w-full py-2 px-4 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Logout</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div id="page-feeds" class="p-4">
+        <!-- Page Cover Photo -->
+        <div class="relative bg-[#1a1a1a] h-48 rounded-lg overflow-hidden mb-4">
+            <img src="images/cover-photo.png" alt="Cover Photo" id="coverPhoto" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Page Profile Section -->
+        <div class="flex flex-col items-center text-center">
+            <!-- Page Profile Picture -->
+            <img src="images/page-pic.png" alt="Page Profile" id="pageProfile" class="w-24 h-24 rounded-full border-4 border-[#DCC681] mb-2">
+            <!-- Page Name and Edit Button -->
+            <div class="flex items-center justify-center space-x-4 mb-2">
+                <p id="pageName" class="text-xl font-bold">PAGE NAME</p>
+                <button id="editPage" class="py-1 px-3 bg-[#DCC681] text-black rounded hover:bg-white transition">Edit</button>
+            </div>
+            <!-- Followers, Posts, and Follow Button -->
+            <div class="flex items-center justify-center space-x-8">
+                <div>
+                    <p class="text-sm">Followers</p>
+                    <p id="followersCount" class="text-lg font-bold">0</p>
+                </div>
+                <div>
+                    <p class="text-sm">Posts</p>
+                    <p id="postsCount" class="text-lg font-bold">0</p>
+                </div>
+                <button id="followPage" class="py-1 px-3 bg-[#DCC681] text-black rounded hover:bg-white transition">Follow</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Page Modal -->
+    <div id="editPageModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-black border border-[#DCC681] rounded-lg p-6 w-4/5 max-w-lg shadow-lg">
+            <span id="closeEditModal" class="text-[#DCC681] text-2xl font-bold cursor-pointer float-right hover:text-white">&times;</span>
+            <h3 class="text-lg font-bold mb-4">Edit Page</h3>
+            <form id="editPageForm" class="space-y-4">
+                <!-- Change Cover Photo -->
+                <div>
+                    <label for="newCoverPhoto" class="block text-sm">Change Cover Photo</label>
+                    <input type="file" id="newCoverPhoto" accept="image/*" class="w-full bg-white text-black p-2 rounded">
+                </div>
+                <!-- Change Profile Picture -->
+                <div>
+                    <label for="newPageProfile" class="block text-sm">Change Profile Picture</label>
+                    <input type="file" id="newPageProfile" accept="image/*" class="w-full bg-white text-black p-2 rounded">
+                </div>
+                <!-- Change Page Name -->
+                <div>
+                    <label for="newPageName" class="block text-sm">Change Page Name</label>
+                    <input type="text" id="newPageName" placeholder="Enter new page name" class="w-full bg-white text-black p-2 rounded">
+                </div>
+                <button type="button" id="savePageChanges" class="w-full py-2 px-4 bg-[#DCC681] text-black rounded hover:bg-white transition">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const editPageButton = document.getElementById('editPage');
+            const editPageModal = document.getElementById('editPageModal');
+            const closeEditModal = document.getElementById('closeEditModal');
+            const savePageChanges = document.getElementById('savePageChanges');
+            const pageProfile = document.getElementById('pageProfile');
+            const coverPhoto = document.getElementById('coverPhoto');
+            const pageName = document.getElementById('pageName');
+            const newPageProfile = document.getElementById('newPageProfile');
+            const newCoverPhoto = document.getElementById('newCoverPhoto');
+            const newPageName = document.getElementById('newPageName');
+
+            // Open Edit Page Modal
+            editPageButton.addEventListener('click', () => {
+                editPageModal.classList.remove('hidden');
+            });
+
+            // Close Edit Page Modal
+            closeEditModal.addEventListener('click', () => {
+                editPageModal.classList.add('hidden');
+            });
+
+            // Save Changes
+            savePageChanges.addEventListener('click', () => {
+                // Update Page Profile Picture
+                if (newPageProfile.files.length > 0) {
+                    const file = newPageProfile.files[0];
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        pageProfile.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                // Update Cover Photo
+                if (newCoverPhoto.files.length > 0) {
+                    const file = newCoverPhoto.files[0];
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        coverPhoto.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                // Update Page Name
+                if (newPageName.value.trim() !== '') {
+                    pageName.textContent = newPageName.value.trim();
+                }
+
+                // Close Modal
+                editPageModal.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

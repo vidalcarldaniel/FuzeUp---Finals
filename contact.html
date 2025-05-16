@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuzeUp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="bg-black text-[#DCC681]">
+    <header>
+        <nav class="flex flex-col items-center p-4">
+            <div id="logo-Search" class="flex items-center w-full justify-between">
+                <img src="images/logo.png" alt="logo.png" class="w-1/5 mr-4">
+                <input type="text" placeholder="Search" id="search-Bar" class="h-10 w-4/5 bg-transparent border border-[#DCC681] text-[#DCC681] rounded-full px-2 focus:outline-none focus:border-[#DCC681]">
+            </div>
+            <div id="icons" class="mt-4 w-full">
+                <ul class="flex justify-around">
+                    <li><i class='bx bx-home-alt text-4xl cursor-pointer hover:text-white' onclick="goToDashBoard()"></i></li>
+                    <li><i class='bx bx-user-plus text-4xl cursor-pointer hover:text-white' onclick="goToFriendReq()"></i></li>
+                    <li><i class='bx bx-bell text-4xl cursor-pointer hover:text-white' onclick="goToNotification()"></i></li>
+                    <li class="relative">
+                        <i class='bx bx-menu text-4xl cursor-pointer hover:text-white' id="hamburgerMenu"></i>
+                        <div id="dropdownMenu" class="hidden absolute top-12 right-0 bg-black border border-[#DCC681] rounded-lg p-4 w-48 shadow-lg z-50">
+                            <div id="userProfile" class="flex items-center mb-4">
+                                <img src="images/user-profile.png" alt="User Profile" id="profileImage" class="w-10 h-10 rounded-full mr-2">
+                                <p id="userName" class="text-[#DCC681] font-bold text-sm">John Doe</p>
+                            </div>
+                            <button onclick="goToProfile()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Profile</button>
+                            <button onclick="goToPage()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Page</button>
+                            <button onclick="goToContact()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Contact</button>
+                            <button onclick="logout()" class="w-full py-2 px-4 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Logout</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div id="contact" class="p-4">
+        <h1 class="text-3xl font-bold mb-6 text-center">CONTACT</h1>
+        <form id="contact-form" class="flex flex-col items-center gap-6">
+            <!-- Name Input -->
+            <div class="flex flex-col items-start w-full max-w-lg">
+                <label for="name" class="text-sm font-bold mb-2 ml-2 text-[#DCC681]">Name</label>
+                <input type="text" id="name" name="name" required class="w-full p-4 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-base focus:outline-none focus:border-white">
+            </div>
+            <!-- Email Input -->
+            <div class="flex flex-col items-start w-full max-w-lg">
+                <label for="email" class="text-sm font-bold mb-2 ml-2 text-[#DCC681]">Email</label>
+                <input type="email" id="email" name="email" required class="w-full p-4 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-base focus:outline-none focus:border-white">
+            </div>
+            <!-- Subject Input -->
+            <div class="flex flex-col items-start w-full max-w-lg">
+                <label for="subject" class="text-sm font-bold mb-2 ml-2 text-[#DCC681]">Subject</label>
+                <input type="text" id="subject" name="subject" required class="w-full p-4 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-base focus:outline-none focus:border-white">
+            </div>
+            <!-- Message Input -->
+            <div class="flex flex-col items-start w-full max-w-lg">
+                <label for="message" class="text-sm font-bold mb-2 ml-2 text-[#DCC681]">Message</label>
+                <textarea id="message" name="message" required class="w-full p-4 border-2 border-[#DCC681] rounded bg-transparent text-[#DCC681] text-base focus:outline-none focus:border-white"></textarea>
+            </div>
+            <!-- Submit Button -->
+            <button type="submit" class="bg-transparent border-2 border-[#DCC681] text-[#DCC681] rounded-full w-48 h-12 flex items-center justify-center hover:bg-[#DCC681] hover:text-black transition">
+                <span class="text-base font-bold">Send Message</span>
+            </button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Initialize EmailJS with your user ID
+        (function () {
+            emailjs.init("DldhblFWd_4Kf8YuC"); // Replace with your EmailJS User ID
+        })();
+
+        // Function to send email using EmailJS
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Send the email using the form data
+            emailjs.sendForm('service_xc6nh3b', 'template_8a8i194', this)
+                .then(function () {
+                    alert('Message Sent Successfully!');
+                }, function (error) {
+                    console.error('Failed to send the message:', error);
+                    alert('Failed to send the message. Please try again later.');
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuzeUp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="bg-black text-white font-bold font-cursive flex items-center justify-center h-screen ">
+    <div id="container" class="flex flex-col items-center">
+        <img src="images/logo.png" alt="logo.png" id="logo" class="w-64 md:w-32 mb-20">
+        <div id="choices" class="flex flex-col items-center mt-12 md:mt-24 w-full space-y-6">
+            <button onclick="goToSignup()" id="signUp-Btn" class="w-full text-center py-3 border-2 border-[#DCC681] rounded-full bg-black text-[#DCC681] text-[25px] hover:border-white hover:bg-[#DCC681] hover:text-white transition mb-8">
+                SIGN UP
+            </button>
+            <button onclick="goToLogin()" id="logIn-Btn" class="w-full text-center py-3 border-2 border-[#DCC681] rounded-full bg-black text-[#DCC681] text-[25px] hover:border-white hover:bg-[#DCC681] hover:text-white transition">
+                LOG IN
+            </button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
