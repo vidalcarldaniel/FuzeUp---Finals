@@ -18,27 +18,30 @@
             <div id="name-fields" class="flex flex-row gap-5 w-full max-w-lg">
                 <div id="input-group" class="flex flex-col items-start w-1/2">
                     <label class="text-xs mb-1 ml-2 text-[#DCC681]">First Name</label>
-                    <input type="text" required class="w-full p-3 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-sm focus:outline-none focus:border-white">
+                    <input type="text" id="firstName" required class="w-full p-3 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-sm focus:outline-none focus:border-white">
                 </div>
                 <div id="input-group" class="flex flex-col items-start w-1/2">
                     <label class="text-xs mb-1 ml-2 text-[#DCC681]">Last Name</label>
-                    <input type="text" required class="w-full p-3 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-sm focus:outline-none focus:border-white">
+                    <input type="text" id="lastName" required class="w-full p-3 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-sm focus:outline-none focus:border-white">
                 </div>
             </div>
             <div id="input-group" class="flex flex-col items-start w-full max-w-lg">
                 <label class="text-xs mb-1 ml-2 text-[#DCC681]">Email</label>
-                <input type="email" required class="w-full p-3 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-sm focus:outline-none focus:border-white">
+                <input type="email" id="email" required class="w-full p-3 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-sm focus:outline-none focus:border-white">
             </div>
             <div id="input-group" class="flex flex-col items-start w-full max-w-lg">
                 <label class="text-xs mb-1 ml-2 text-[#DCC681]">Password</label>
-                <input type="password" required class="w-full p-3 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-sm focus:outline-none focus:border-white">
+                <input type="password" id="password" required class="w-full p-3 border-2 border-[#DCC681] rounded-full bg-transparent text-[#DCC681] text-sm focus:outline-none focus:border-white">
             </div>
             <a href="logIn.html" id="login-link" class="text-xs underline text-[#DCC681] cursor-pointer mt-[-10px] self-end ml-40">Already have an account?</a>
-            <button type="button" id="submit-button" onclick="goToLogin()" class="bg-transparent border-2 border-[#DCC681] text-[#DCC681] rounded-full w-48 h-12 flex items-center justify-center hover:bg-[#DCC681] hover:text-black transition">
+            <button type="submit" id="submit-button" class="bg-transparent border-2 border-[#DCC681] text-[#DCC681] rounded-full w-48 h-12 flex items-center justify-center hover:bg-[#DCC681] hover:text-black transition">
                 <span id="arrow" class="text-2xl"><i class='bx bx-right-arrow-alt'></i></span>
             </button>
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="database.js"></script>
+    <script src="signup.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

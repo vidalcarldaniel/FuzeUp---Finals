@@ -16,9 +16,11 @@
 <body class="bg-black text-[#DCC681]">
     <header>
         <nav class="flex flex-col items-center p-4">
-            <div id="logo-Search" class="flex items-center w-full justify-between">
+            <div id="logo-Search" class="flex items-center w-full justify-between relative">
                 <img src="images/logo.png" alt="logo.png" class="w-1/5 mr-4">
-                <input type="text" placeholder="Search" id="search-Bar" class="h-10 w-4/5 bg-transparent border border-[#DCC681] text-[#DCC681] rounded-full px-2 focus:outline-none focus:border-[#DCC681]">
+                <button id="searchBtn" class="h-10 w-4/5 bg-transparent border border-[#DCC681] text-[#DCC681] rounded-full px-2 focus:outline-none focus:border-[#DCC681]">
+                    <input type="text" placeholder="Search" id="search-Bar" class="h-10 w-full bg-transparent text-[#DCC681] rounded-full ">
+                </button>
             </div>
             <div id="icons" class="mt-4 w-full">
                 <ul class="flex justify-around">
@@ -34,7 +36,6 @@
                             </div>
                             <button onclick="goToProfile()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Profile</button>
                             <button onclick="goToPage()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Page</button>
-                            <button onclick="goToContact()" class="w-full py-2 px-4 mb-2 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Contact</button>
                             <button onclick="logout()" class="w-full py-2 px-4 bg-black text-[#DCC681] border border-[#DCC681] rounded hover:bg-[#DCC681] hover:text-black transition">Logout</button>
                         </div>
                     </li>
@@ -43,7 +44,7 @@
         </nav>
     </header>
     <div id="feeds" class="p-4 space-y-6">
-        <!-- Existing feed items will be dynamically added here -->
+        
     </div>
 
     <footer class="text-[#DCC681] text-4xl fixed bottom-0 w-full text-center cursor-pointer bg-black">
@@ -69,6 +70,16 @@
             </form>
         </div>
     </div>
+
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="database.js"></script>
+    <script src="modals.js"></script>
+    <script src="likes.js"></script>
+    <script src="comments.js"></script>
+    <script src="posts.js"></script>
+    <script src="share.js"></script>
+    <script src="search.js"></script>
+    <script src="session.js"></script>
 </body>
 </html>

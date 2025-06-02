@@ -99,27 +99,92 @@
         });
 
         // Save Profile Changes
-        saveProfileChanges.addEventListener('click', () => {
-            // Update Profile Picture
+        saveProfileChanges.addEventListener('click', async () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (!user) return;
+
+            let updatedProfilePicUrl = user.profile_picture;
+            let updatedBio = bioText.textContent;
+
+            // Upload new profile picture if selected
             if (newProfileImage.files.length > 0) {
                 const file = newProfileImage.files[0];
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    profileImages.forEach((img) => {
-                        img.src = e.target.result; // Update all profile images
-                    });
-                };
-                reader.readAsDataURL(file);
+                const filePath = `${user.user_id}_${Date.now()}_${file.name}`;
+                console.log('Uploading to:', filePath);
+                const { data, error } = await supabase.storage
+                    .from('user-profile')
+                    .upload(filePath, file, { upsert: true });
+                if (!error && data) {
+                    const { publicUrl } = supabase.storage.from('user-profile').getPublicUrl(filePath);
+                    updatedProfilePicUrl = `${publicUrl}?t=${Date.now()}`;
+                    console.log('Public URL:', updatedProfilePicUrl);
+                } else {
+                    alert('Failed to upload profile picture.');
+                    return;
+                }
             }
 
             // Update Bio
             if (newBio.value.trim() !== '') {
-                bioText.textContent = newBio.value.trim();
+                updatedBio = newBio.value.trim();
+                bioText.textContent = updatedBio;
             }
 
-            // Close Modal
+            // Update user in Supabase DB
+            const { error: updateError } = await supabase
+                .from('users')
+                .update({
+                    profile_picture: updatedProfilePicUrl,
+                    bio: updatedBio
+                })
+                .eq('user_id', user.user_id);
+
+            console.log('Supabase update error:', updateError);
+
+            if (!updateError) {
+                user.profile_picture = updatedProfilePicUrl;
+                user.bio = updatedBio;
+                localStorage.setItem('user', JSON.stringify(user));
+                document.querySelectorAll('.profileImage').forEach(img => {
+                    img.src = updatedProfilePicUrl;
+                });
+                if (document.getElementById('bioText')) {
+                    document.getElementById('bioText').textContent = updatedBio;
+                }
+            } else {
+                alert('Failed to update profile.');
+            }
+
             editProfileModal.classList.add('hidden');
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get user info from localStorage
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                // Update all profile images
+                document.querySelectorAll('.profileImage').forEach(img => {
+                    img.src = user.profile_picture || 'images/user-profile.png';
+                });
+                // Update all user name fields
+                document.querySelectorAll('#userName').forEach(nameEl => {
+                    nameEl.textContent = `${user.first_name} ${user.last_name}`;
+                });
+                // If you store bio in user, update it here
+                if (user.bio && document.getElementById('bioText')) {
+                    document.getElementById('bioText').textContent = user.bio;
+                }
+            }
+        });
     </script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="database.js"></script>
+    <script src="modals.js"></script>
+    <script src="likes.js"></script>
+    <script src="comments.js"></script>
+    <script src="posts.js"></script>
+    <script src="share.js"></script>
+    <script src="session.js"></script>
 </body>
 </html>

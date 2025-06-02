@@ -43,25 +43,30 @@
         </div>
 
         <!-- Page Profile Section -->
-        <div class="flex flex-col items-center text-center">
-            <!-- Page Profile Picture -->
-            <img src="images/page-pic.png" alt="Page Profile" id="pageProfile" class="w-24 h-24 rounded-full border-4 border-[#DCC681] mb-2">
-            <!-- Page Name and Edit Button -->
-            <div class="flex items-center justify-center space-x-4 mb-2">
-                <p id="pageName" class="text-xl font-bold">PAGE NAME</p>
-                <button id="editPage" class="py-1 px-3 bg-[#DCC681] text-black rounded hover:bg-white transition">Edit</button>
-            </div>
-            <!-- Followers, Posts, and Follow Button -->
-            <div class="flex items-center justify-center space-x-8">
-                <div>
-                    <p class="text-sm">Followers</p>
-                    <p id="followersCount" class="text-lg font-bold">0</p>
+        <div class="flex flex-col items-center text-center relative">
+            <!-- Page Profile Picture (moved up) -->
+            <img src="images/page-pic.png" alt="Page Profile" id="pageProfile"
+                 class="w-24 h-24 rounded-full border-4 border-[#DCC681] mb-2 absolute -top-14 left-1/2 transform -translate-x-1/2 shadow-lg bg-black">
+
+            <!-- Add padding-top to make space for the floating profile pic -->
+            <div class="pt-16 w-full">
+                <!-- Page Name and Edit Button -->
+                <div class="flex items-center justify-center space-x-4 mb-2">
+                    <p id="pageName" class="text-xl font-bold">PAGE NAME</p>
+                    <button id="editPage" class="py-1 px-3 bg-[#DCC681] text-black rounded hover:bg-white transition">Edit</button>
                 </div>
-                <div>
-                    <p class="text-sm">Posts</p>
-                    <p id="postsCount" class="text-lg font-bold">0</p>
+                <!-- Followers, Posts, and Follow Button -->
+                <div class="flex items-center justify-center space-x-8">
+                    <div>
+                        <p class="text-sm">Followers</p>
+                        <p id="followersCount" class="text-lg font-bold">0</p>
+                    </div>
+                    <div>
+                        <p class="text-sm">Posts</p>
+                        <p id="postsCount" class="text-lg font-bold">0</p>
+                    </div>
+                    <!-- The Follow button has been removed -->
                 </div>
-                <button id="followPage" class="py-1 px-3 bg-[#DCC681] text-black rounded hover:bg-white transition">Follow</button>
             </div>
         </div>
     </div>
@@ -147,5 +152,14 @@
             });
         });
     </script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="database.js"></script>
+    <script src="modals.js"></script>
+    <script src="likes.js"></script>
+    <script src="comments.js"></script>
+    <script src="posts.js"></script>
+    <script src="share.js"></script>
+    <script src="session.js"></script>
 </body>
 </html>
